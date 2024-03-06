@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterPlayer2">
+    tools:context=".RegisterPlayer3">
 
     <ImageView
         android:id="@+id/imageView"
@@ -34,14 +34,14 @@
 
 
     <EditText
-        android:id="@+id/nameEditText"
+        android:id="@+id/weightEditText"
         android:layout_width="374dp"
         android:layout_height="57dp"
         android:layout_marginTop="44dp"
         android:background="@drawable/corners1"
         android:backgroundTint="#E6E6E6"
         android:fontFamily="@font/inter_semibold"
-        android:hint="Imię"
+        android:hint="Waga"
         android:inputType="textEmailAddress"
         android:padding="16dp"
         android:textColorHint="#707070"
@@ -52,14 +52,32 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/surnameEditText"
+        android:id="@+id/birthEditText"
+        android:layout_width="374dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="180dp"
+        android:background="@drawable/corners1"
+        android:backgroundTint="#E6E6E6"
+        android:fontFamily="@font/inter_semibold"
+        android:hint="Data urodzenia"
+        android:inputType="textEmailAddress"
+        android:padding="16dp"
+        android:textColorHint="#707070"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/heightEditText"
         android:layout_width="374dp"
         android:layout_height="57dp"
         android:layout_marginTop="112dp"
         android:background="@drawable/corners1"
         android:backgroundTint="#E6E6E6"
         android:fontFamily="@font/inter_semibold"
-        android:hint="Nazwisko"
+        android:hint="Wzrost"
         android:inputType="textPassword"
         android:padding="16dp"
         android:textColorHint="#707070"

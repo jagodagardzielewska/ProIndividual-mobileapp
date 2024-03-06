@@ -36,7 +36,7 @@
         android:id="@+id/emailEditText"
         android:layout_width="374dp"
         android:layout_height="57dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/corners1"
         android:backgroundTint="#E6E6E6"
         android:fontFamily="@font/inter_semibold"
@@ -54,7 +54,7 @@
         android:id="@+id/editTextTextPassword"
         android:layout_width="374dp"
         android:layout_height="57dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/corners1"
         android:backgroundTint="#E6E6E6"
         android:fontFamily="@font/inter_semibold"
@@ -127,6 +127,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2"
         app:layout_constraintVertical_bias="0.181" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nieprawidłowy e-mail lub hasło."
+        android:fontFamily="@font/inter_semibold"
+        android:textSize="15dp"
+        android:textColor="@color/error_message"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="258dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     android:padding="16dp"
-    tools:context=".PlayerProfile">
+    tools:context=".EditProfile">
 
     <RelativeLayout
         android:id="@+id/page_title"
@@ -233,18 +233,7 @@
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/grey"
             android:fontFamily="@font/inter_semibold"
-            android:text="Edytuj profil"
-            android:textColor="@color/black"
-            android:textSize="17dp" />
-
-        <Button
-            android:id="@+id/coachbutton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:backgroundTint="@color/grey"
-            android:fontFamily="@font/inter_semibold"
-            android:text="Twoi trenerzy"
+            android:text="Zapisz zmiany"
             android:textColor="@color/black"
             android:textSize="17dp" />
 

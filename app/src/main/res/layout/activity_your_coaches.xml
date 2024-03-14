@@ -48,7 +48,8 @@
         android:layout_height="622dp"
         android:layout_below="@id/page_title"
         android:layout_marginTop="9dp"
-        android:background="@drawable/corners2" />
+        android:background="@drawable/corners2"
+        />
 
     <TextView
         android:id="@+id/logotxt"

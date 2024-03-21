@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "296949999191",
+    "project_id": "proindividual-5f523",
+    "storage_bucket": "proindividual-5f523.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296949999191:android:08792a0c028b1cb557e512",
+        "android_client_info": {
+          "package_name": "com.example.proindividual"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBA54N-WJIzsSws49kdQ9CeFCRnUpYt3uc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

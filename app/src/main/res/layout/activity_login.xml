@@ -76,7 +76,7 @@
         android:fontFamily="@font/inter_semibold"
         android:text="Zapisz dane logowania"
         android:textColor="#707070"
-        android:textColorChecked="#000000"
+        android:buttonTint="#000000"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.076"

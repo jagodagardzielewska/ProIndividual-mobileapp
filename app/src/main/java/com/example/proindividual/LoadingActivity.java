@@ -16,7 +16,7 @@ public class LoadingActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(LoadingActivity.this,ChoosingUser.class));
+                startActivity(new Intent(LoadingActivity.this,LoginActivity.class));
                 finish();
 
             }

@@ -10,7 +10,6 @@
         android:id="@+id/imageView"
         android:layout_width="392dp"
         android:layout_height="142dp"
-        android:src="@drawable/corners1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"
@@ -36,7 +35,7 @@
         android:id="@+id/emailEditText"
         android:layout_width="374dp"
         android:layout_height="57dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="64dp"
         android:background="@drawable/corners1"
         android:backgroundTint="#E6E6E6"
         android:fontFamily="@font/inter_semibold"
@@ -68,26 +67,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
 
-    <RadioButton
-        android:id="@+id/radioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/inter_semibold"
-        android:text="Zapisz dane logowania"
-        android:textColor="#707070"
-        android:buttonTint="#000000"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.076"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="377dp"
         android:layout_height="57dp"
-        android:layout_marginBottom="124dp"
+        android:layout_marginBottom="152dp"
         android:backgroundTint="@color/grey"
         android:fontFamily="@font/inter_semibold"
         android:text="Zaloguj się"
@@ -96,12 +81,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.441"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioButton"
-        app:layout_constraintVertical_bias="0.342" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/createacc_button"
         android:layout_width="377dp"
         android:layout_height="57dp"
         android:layout_marginTop="16dp"
@@ -125,7 +108,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/createacc_button"
         app:layout_constraintVertical_bias="0.181" />
 
     <TextView
@@ -136,12 +119,13 @@
         android:text="Nieprawidłowy e-mail lub hasło."
         android:textColor="@color/error_message"
         android:textSize="15dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/emailEditText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.136"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.529" />
+        app:layout_constraintVertical_bias="0.913" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

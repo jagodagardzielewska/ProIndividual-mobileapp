@@ -16,7 +16,7 @@ import com.example.proindividual.models.Player;
 public class RegisterPlayer2 extends AppCompatActivity {
 
     EditText nameEditText, surnameEditText;
-    Button next_button2;
+    Button next_button2,back_button;
     TextView namesError;
 
     @Override
@@ -27,6 +27,7 @@ public class RegisterPlayer2 extends AppCompatActivity {
         nameEditText = findViewById(R.id.nameEditText);
         surnameEditText = findViewById(R.id.surnameEditText);
         next_button2 = findViewById(R.id.next_button2);
+        back_button = findViewById(R.id.back_button2);
         namesError = findViewById(R.id.namesError);
 
         namesError.setVisibility(View.INVISIBLE);
@@ -47,7 +48,12 @@ public class RegisterPlayer2 extends AppCompatActivity {
         nameEditText.addTextChangedListener(textWatcher);
         surnameEditText.addTextChangedListener(textWatcher);
 
-
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         next_button2.setOnClickListener(v -> {
             boolean isNameFilled = !nameEditText.getText().toString().trim().isEmpty();
             boolean isSurnameFilled = !surnameEditText.getText().toString().trim().isEmpty();

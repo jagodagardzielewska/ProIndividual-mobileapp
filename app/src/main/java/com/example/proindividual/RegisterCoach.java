@@ -34,7 +34,12 @@ public class RegisterCoach extends AppCompatActivity {
         passwordError.setVisibility(View.INVISIBLE);
         passwordError2.setVisibility(View.INVISIBLE);
 
-        back_button.setOnClickListener(v -> finish());
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         next_button = findViewById(R.id.next_button);
         next_button.setOnClickListener(v -> {

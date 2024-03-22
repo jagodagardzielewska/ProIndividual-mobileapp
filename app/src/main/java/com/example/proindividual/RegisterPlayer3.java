@@ -56,8 +56,14 @@ public class RegisterPlayer3 extends AppCompatActivity {
         heightEditText = findViewById(R.id.heightEditText);
         birthEditText = findViewById(R.id.birthEditText);
         register_button = findViewById(R.id.register_button);
+        back_button = findViewById(R.id.back_button3);
 
-
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         Player player = (Player) getIntent().getSerializableExtra("player");
 

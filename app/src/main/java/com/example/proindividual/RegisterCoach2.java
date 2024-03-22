@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterCoach2 extends AppCompatActivity {
     EditText nameEditText, surnameEditText;
-    Button register_button2;
+    Button register_button2,back_button;
     TextView namesError;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
@@ -37,8 +37,16 @@ public class RegisterCoach2 extends AppCompatActivity {
         surnameEditText = findViewById(R.id.surnameEditText);
         register_button2 = findViewById(R.id.register_button2);
         namesError = findViewById(R.id.namesError);
+        back_button = findViewById(R.id.back_button2);
 
         namesError.setVisibility(View.INVISIBLE);
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         TextWatcher textWatcher = new TextWatcher() {
             @Override

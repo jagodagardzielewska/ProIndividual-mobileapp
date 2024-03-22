@@ -44,9 +44,9 @@
 
     <LinearLayout
         android:id="@+id/layoutl"
-        android:layout_width="379dp"
+        android:layout_width="match_parent"
         android:layout_below="@id/page_title"
-        android:layout_height="622dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="9dp"
         android:orientation="vertical"
         android:background="@drawable/corners2">
@@ -55,7 +55,7 @@
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             app:srcCompat="@drawable/profile_image" />
 
         <TextView
@@ -65,7 +65,7 @@
             android:text="Imię"
             android:fontFamily="@font/inter_bold"
             android:textSize="17dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="8dp"
             android:textColor="@color/black"/>
 
@@ -89,7 +89,7 @@
             android:text="Nazwisko"
             android:fontFamily="@font/inter_bold"
             android:textSize="17dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="8dp"
             android:textColor="@color/black"/>
 
@@ -113,7 +113,7 @@
             android:text="Hasło"
             android:fontFamily="@font/inter_bold"
             android:textSize="17dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="8dp"
             android:textColor="@color/black"/>
 
@@ -137,7 +137,7 @@
             android:text="E-mail"
             android:fontFamily="@font/inter_bold"
             android:textSize="17dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="8dp"
             android:textColor="@color/black"/>
 
@@ -161,7 +161,7 @@
             android:text="Wzrost (cm)"
             android:fontFamily="@font/inter_bold"
             android:textSize="17dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="8dp"
             android:textColor="@color/black"/>
 
@@ -185,7 +185,7 @@
             android:text="Waga (kg)"
             android:fontFamily="@font/inter_bold"
             android:textSize="17dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="8dp"
             android:textColor="@color/black"/>
 
@@ -209,7 +209,7 @@
             android:text="Data urodzenia"
             android:fontFamily="@font/inter_bold"
             android:textSize="17dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="8dp"
             android:textColor="@color/black"/>
 
@@ -227,15 +227,16 @@
             android:textSize="17dp"/>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/save_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="50dp"
             android:backgroundTint="@color/grey"
             android:fontFamily="@font/inter_semibold"
             android:text="Zapisz zmiany"
             android:textColor="@color/black"
             android:textSize="17dp" />
+
 
     </LinearLayout>
 

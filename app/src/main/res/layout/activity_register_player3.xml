@@ -10,7 +10,6 @@
         android:id="@+id/imageView"
         android:layout_width="392dp"
         android:layout_height="142dp"
-        android:src="@drawable/corners1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"
@@ -37,37 +36,21 @@
         android:id="@+id/weightEditText"
         android:layout_width="374dp"
         android:layout_height="57dp"
-        android:layout_marginTop="44dp"
         android:background="@drawable/corners1"
         android:backgroundTint="#E6E6E6"
         android:fontFamily="@font/inter_semibold"
         android:hint="Waga"
-        android:inputType="textEmailAddress"
+        android:inputType="number"
         android:padding="16dp"
         android:textColorHint="#707070"
         android:textSize="20dp"
+        android:maxLength="40"
+        app:layout_constraintBottom_toTopOf="@+id/weightError"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <EditText
-        android:id="@+id/birthEditText"
-        android:layout_width="374dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="180dp"
-        android:background="@drawable/corners1"
-        android:backgroundTint="#E6E6E6"
-        android:fontFamily="@font/inter_semibold"
-        android:hint="Data urodzenia"
-        android:inputType="textEmailAddress"
-        android:padding="16dp"
-        android:textColorHint="#707070"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/heightEditText"
@@ -78,23 +61,43 @@
         android:backgroundTint="#E6E6E6"
         android:fontFamily="@font/inter_semibold"
         android:hint="Wzrost"
-        android:inputType="textPassword"
+        android:inputType="number"
+        android:padding="16dp"
+        android:textColorHint="#707070"
+        android:textSize="20dp"
+        android:maxLength="40"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/birthEditText"
+        android:layout_width="374dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/corners1"
+        android:backgroundTint="#E6E6E6"
+        android:fontFamily="@font/inter_semibold"
+        android:hint="Data urodzenia"
+        android:inputType="date"
+        android:maxLength="40"
         android:padding="16dp"
         android:textColorHint="#707070"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/heightEditText" />
 
     <Button
-        android:id="@+id/back_button3"
+        android:id="@+id/register_button"
         android:layout_width="377dp"
         android:layout_height="57dp"
         android:layout_marginBottom="96dp"
-        android:backgroundTint="@color/grey"
+        android:backgroundTint="@color/button_active"
         android:fontFamily="@font/inter_semibold"
-        android:text="Dalej"
+        android:text="Zarejestruj"
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -103,7 +106,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/next_button3"
+        android:id="@+id/back_button"
         android:layout_width="377dp"
         android:layout_height="57dp"
         android:layout_marginTop="4dp"
@@ -114,7 +117,7 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/back_button3" />
+        app:layout_constraintTop_toBottomOf="@+id/register_button" />
 
     <TextView
         android:id="@+id/textView9"
@@ -125,11 +128,54 @@
         android:text="Dołączasz jako zawodnik."
         android:textColor="@color/black"
         android:textSize="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/nameEditText"
+        app:layout_constraintBottom_toTopOf="@+id/weightEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/weightError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_semibold"
+        android:text="Nieprawidłowa waga."
+        android:textColor="@color/error_message"
+        android:textSize="15dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/heightEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/heightError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_semibold"
+        android:text="Nieprawidłowy wzrost."
+        android:textColor="@color/error_message"
+        android:textSize="15dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heightEditText" />
+
+    <TextView
+        android:id="@+id/birthError"
+        android:layout_width="383dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/inter_semibold"
+        android:text="Data powinna być w formacie DD.MM.YYYY."
+        android:textColor="@color/error_message"
+        android:textSize="15dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.821"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/birthEditText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

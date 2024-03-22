@@ -23,6 +23,7 @@ public class ChoosingUser extends AppCompatActivity {
                 Intent intent = new Intent(ChoosingUser.this, RegisterPlayer.class);
                 intent.putExtra("ROLE", "player");
                 startActivity(intent);
+
             }
         });
 

@@ -36,6 +36,17 @@ public class Player implements Serializable {
     public String getPassword() {
         return password;
     }
+    public String getName() {return name;}
+
+    public String getSurname() {return surname;}
+
+    public String getWeight() {return weight;}
+    public String getHeight() {return height;}
+
+    public String getBirth() {return birth;}
+
+    public String getRole() {return role;}
+
 
     public void setEmail(String email) {
         this.email = email;
@@ -56,4 +67,6 @@ public class Player implements Serializable {
     public void setHeight(String height) {this.height = height;}
 
     public void setBirth(String birth) {this.birth = birth;}
+
+    public void setRole(String role) {this.role = role;}
 }

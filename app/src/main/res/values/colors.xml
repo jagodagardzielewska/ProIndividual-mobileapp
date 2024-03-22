@@ -5,4 +5,6 @@
     <color name="grey">#E6E6E6</color>
     <color name="error_message">#FF0000</color>
     <color name="logo_blue">#0497EA</color>
+    <color name="button_active">#E6E6E6</color>
+    <color name="button_inactive">#BFEA8B8B</color>
 </resources>

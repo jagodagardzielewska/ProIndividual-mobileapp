@@ -47,6 +47,7 @@ public class RegisterPlayer2 extends AppCompatActivity {
         nameEditText.addTextChangedListener(textWatcher);
         surnameEditText.addTextChangedListener(textWatcher);
 
+
         next_button2.setOnClickListener(v -> {
             boolean isNameFilled = !nameEditText.getText().toString().trim().isEmpty();
             boolean isSurnameFilled = !surnameEditText.getText().toString().trim().isEmpty();

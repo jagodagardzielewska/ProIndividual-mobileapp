@@ -18,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class RegisterPlayer3 extends AppCompatActivity {
 
     private EditText weightEditText, birthEditText, heightEditText;
-    private Button register_button;
+    private Button register_button, back_button;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
@@ -60,6 +60,8 @@ public class RegisterPlayer3 extends AppCompatActivity {
 
 
         Player player = (Player) getIntent().getSerializableExtra("player");
+
+
 
         register_button.setOnClickListener(new View.OnClickListener() {
             @Override

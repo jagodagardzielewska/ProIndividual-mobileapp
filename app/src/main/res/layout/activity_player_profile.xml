@@ -244,7 +244,7 @@
             android:layout_marginTop="2dp"
             android:backgroundTint="@color/grey"
             android:fontFamily="@font/inter_semibold"
-            android:text="Twoi trenerzy"
+            android:text="Rozpocznij współpracę z trenerem"
             android:textColor="@color/black"
             android:textSize="17dp" />
 

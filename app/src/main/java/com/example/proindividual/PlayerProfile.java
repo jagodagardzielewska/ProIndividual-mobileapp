@@ -70,7 +70,6 @@ public class PlayerProfile extends AppCompatActivity {
         coachButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Uruchom AddingCoachCode Activity
                 Intent intent = new Intent(PlayerProfile.this, AddingCoachCode.class);
                 startActivity(intent);
             }

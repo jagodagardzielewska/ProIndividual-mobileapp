@@ -65,7 +65,7 @@ public class PlayerMain extends AppCompatActivity {
 
     private void updateRecyclerView(List<Training> trainingList) {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        TrainingAdapter adapter = new TrainingAdapter(this, trainingList);
+        TrainingAdapter adapter = new TrainingAdapter(this, trainingList,false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }

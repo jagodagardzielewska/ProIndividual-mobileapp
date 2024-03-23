@@ -8,12 +8,49 @@ public class Training {
     private String category;
     private String date;
     private String details;
+    private Ratings ratings;
 
     public Training() {
     }
+    public Ratings getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(Ratings ratings) {
+        this.ratings = ratings;
+    }
+
+    public static class Ratings {
+        private double satisfaction;
+        private double effort;
+
+        public Ratings() {
+        }
+
+        public Ratings(int satisfaction, int effort) {
+            this.satisfaction = satisfaction;
+            this.effort = effort;
+        }
+
+        public double getSatisfaction() {
+            return satisfaction;
+        }
+
+        public void setSatisfaction(int satisfaction) {
+            this.satisfaction = satisfaction;
+        }
+
+        public double getEffort() {
+            return effort;
+        }
+
+        public void setEffort(int effort) {
+            this.effort = effort;
+        }
+    }
 
 
-    public Training(String trainingId, String coachUserId, String playerUserId, String title, String category, String date, String details) {
+        public Training(String trainingId, String coachUserId, String playerUserId, String title, String category, String date, String details) {
         this.trainingId = trainingId;
         this.coachUserId = coachUserId;
         this.playerUserId = playerUserId;
@@ -21,11 +58,13 @@ public class Training {
         this.category = category;
         this.date = date;
         this.details = details;
+
     }
 
     public String getTrainingId() {
         return trainingId;
     }
+
 
     public String getCoachUserId() {
         return coachUserId;
@@ -51,7 +90,7 @@ public class Training {
         return details;
     }
 
-    // Settery
+
     public void setTrainingId(String trainingId) {
         this.trainingId = trainingId;
     }

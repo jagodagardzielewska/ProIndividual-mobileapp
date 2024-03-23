@@ -77,6 +77,27 @@
             android:textAppearance="?attr/textAppearanceListItem"
             android:textColor="@color/black"
             android:padding="2dp" />
+        <TextView
+            android:id="@+id/average_satisfaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ocena1"
+            android:textSize="15dp"
+            android:fontFamily="@font/inter_bold"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="@color/black"
+            android:padding="2dp" />
+
+        <TextView
+            android:id="@+id/average_effort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ocena2"
+            android:textSize="15dp"
+            android:fontFamily="@font/inter_bold"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="@color/black"
+            android:padding="2dp" />
 
 
         <androidx.recyclerview.widget.RecyclerView

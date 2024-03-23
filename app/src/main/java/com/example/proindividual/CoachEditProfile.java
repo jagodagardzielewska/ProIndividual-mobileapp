@@ -1,9 +1,5 @@
 package com.example.proindividual;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,7 +10,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
+import com.example.proindividual.models.Coach;
 import com.example.proindividual.models.Player;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,22 +29,25 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.UUID;
 
-public class EditProfile extends AppCompatActivity {
+public class CoachEditProfile extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
-    private EditText nameEditText, surnameEditText, emailEditText, heightEditText, weightEditText, birthEditText, passwordEditText;
+    private EditText nameEditText, surnameEditText, emailEditText, passwordEditText;
     private ImageView prof_image;
     private FirebaseStorage storage;
     private StorageReference storageReference;
     private ActivityResultLauncher<Intent> someActivityResultLauncher;
+
+    private Button save_button, changeProfileButton;
+
     private String currentProfileImageUrl = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profile);
+        setContentView(R.layout.activity_coach_edit_profile);
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
@@ -55,12 +59,8 @@ public class EditProfile extends AppCompatActivity {
         surnameEditText = findViewById(R.id.surnameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         emailEditText = findViewById(R.id.emailEditText);
-        heightEditText = findViewById(R.id.heightEditText);
-        weightEditText = findViewById(R.id.weightEditText);
-        birthEditText = findViewById(R.id.birthEditText);
-        prof_image = findViewById(R.id.prof_image);
+        prof_image = findViewById(R.id.profile_image);
 
-        Button editProfileButton = findViewById(R.id.changeProfileButton);
         Button saveButton = findViewById(R.id.save_button);
         ImageButton backButton = findViewById(R.id.backbtn);
 
@@ -74,16 +74,13 @@ public class EditProfile extends AppCompatActivity {
                 }
         );
 
-
         Button changeProfileButton = findViewById(R.id.changeProfileButton);
         changeProfileButton.setOnClickListener(v -> openFileChooser());
 
-
-        saveButton.setOnClickListener(v -> saveUserData());
-
+        saveButton.setOnClickListener(v -> saveCoachData());
         backButton.setOnClickListener(v -> finish());
 
-        loadUserData();
+        loadCoachData();
     }
 
     private void openFileChooser() {
@@ -93,28 +90,23 @@ public class EditProfile extends AppCompatActivity {
         someActivityResultLauncher.launch(Intent.createChooser(intent, "Select Picture"));
     }
 
-    private void loadUserData() {
+    private void loadCoachData() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
             mDatabase.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    Player player = dataSnapshot.getValue(Player.class);
-                    if (player != null) {
-                        nameEditText.setText(player.getName());
-                        surnameEditText.setText(player.getSurname());
-                        passwordEditText.setText(player.getPassword());
-                        emailEditText.setText(player.getEmail());
-                        heightEditText.setText(player.getHeight());
-                        weightEditText.setText(player.getWeight());
-                        birthEditText.setText(player.getBirth());
+                    Coach coach = dataSnapshot.getValue(Coach.class);
+                    if (coach != null) {
+                        nameEditText.setText(coach.getName());
+                        surnameEditText.setText(coach.getSurname());
+                        emailEditText.setText(coach.getEmail());
+                        passwordEditText.getText().toString().trim();
 
-
-                        if (player.getProfileImageUrl() != null && !player.getProfileImageUrl().isEmpty()) {
-                            Glide.with(EditProfile.this).load(player.getProfileImageUrl()).into(prof_image);
+                        if (coach.getProfileImageUrl() != null && !coach.getProfileImageUrl().isEmpty()) {
+                            Glide.with(CoachEditProfile.this).load(coach.getProfileImageUrl()).into(prof_image);
                         } else {
-
                             prof_image.setImageResource(R.drawable.profile_image);
                         }
                     }
@@ -122,41 +114,39 @@ public class EditProfile extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Toast.makeText(EditProfile.this, "Failed to load user data.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CoachEditProfile.this, "Failed to load coach data: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
     }
 
-
-    private void saveUserData() {
+    private void saveCoachData() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
-            Player updatedPlayer = new Player(
+            Coach updatedCoach = new Coach (
                     emailEditText.getText().toString().trim(),
                     passwordEditText.getText().toString().trim(),
                     nameEditText.getText().toString().trim(),
                     surnameEditText.getText().toString().trim(),
-                    heightEditText.getText().toString().trim(),
-                    weightEditText.getText().toString().trim(),
-                    birthEditText.getText().toString().trim(),
-                    "player",
+                    "coach",
                     currentProfileImageUrl
             );
 
-
-            mDatabase.child(userId).setValue(updatedPlayer)
+            mDatabase.child(userId).setValue(updatedCoach)
                     .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(EditProfile.this, "User data updated.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CoachEditProfile.this, "User data updated.", Toast.LENGTH_SHORT).show();
                         Intent data = new Intent();
                         setResult(RESULT_OK, data);
                         finish();
 
                     })
-                    .addOnFailureListener(e -> Toast.makeText(EditProfile.this, "Failed to update user data.", Toast.LENGTH_SHORT).show());
+                    .addOnFailureListener(e -> Toast.makeText(CoachEditProfile.this, "Failed to update user data.", Toast.LENGTH_SHORT).show());
         }
+
+
     }
+
     private void uploadImageToFirebase(Uri imageUri) {
         if (imageUri != null) {
             StorageReference fileRef = storageReference.child("profileImages/" + UUID.randomUUID().toString());
@@ -165,10 +155,9 @@ public class EditProfile extends AppCompatActivity {
                     String profileImageUrl = uri.toString();
                     updateProfileImageUrl(profileImageUrl);
                 });
-            }).addOnFailureListener(e -> Toast.makeText(EditProfile.this, "Failed to upload image", Toast.LENGTH_SHORT).show());
+            }).addOnFailureListener(e -> Toast.makeText(CoachEditProfile.this, "Failed to upload image", Toast.LENGTH_SHORT).show());
         }
     }
-
     private void updateProfileImageUrl(String imageUrl) {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
@@ -176,10 +165,10 @@ public class EditProfile extends AppCompatActivity {
             this.currentProfileImageUrl = imageUrl;
             mDatabase.child(userId).child("profileImageUrl").setValue(imageUrl)
                     .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(EditProfile.this, "Image updated", Toast.LENGTH_SHORT).show();
-                        Glide.with(EditProfile.this).load(imageUrl).into(prof_image);
+                        Toast.makeText(CoachEditProfile.this, "Image updated", Toast.LENGTH_SHORT).show();
+                        Glide.with(CoachEditProfile.this).load(imageUrl).into(prof_image);
                     })
-                    .addOnFailureListener(e -> Toast.makeText(EditProfile.this, "Failed to update image", Toast.LENGTH_SHORT).show());
+                    .addOnFailureListener(e -> Toast.makeText(CoachEditProfile.this, "Failed to update image", Toast.LENGTH_SHORT).show());
         }
     }
 }

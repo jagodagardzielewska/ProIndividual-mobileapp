@@ -12,12 +12,13 @@ public class Player implements Serializable {
     private String height;
     private String birth;
     private String role;
+    private String profileImageUrl;
 
     public Player() {
     }
 
     public Player(String email, String password, String name, String surname,
-                  String weight, String height, String birth, String role) {
+                  String weight, String height, String birth, String role, String getProfileImageUrl) {
         this.email = email;
         this.password = password;
         this.name = name;
@@ -26,11 +27,16 @@ public class Player implements Serializable {
         this.height = height;
         this.birth = birth;
         this.role = role;
+        this.profileImageUrl = getProfileImageUrl;
     }
 
 
     public String getEmail() {
         return email;
+    }
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
     }
 
     public String getPassword() {
@@ -50,6 +56,10 @@ public class Player implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
     }
 
     public void setPassword(String password) {

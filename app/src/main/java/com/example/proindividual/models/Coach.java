@@ -9,6 +9,20 @@ public class Coach implements Serializable {
     private String name;
     private String surname;
     private String role;
+    private String profileImageUrl;
+
+    public Coach(){
+
+    }
+
+    public Coach(String email, String password, String name, String surname, String role, String profileImageUrl) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.role = role;
+        this.profileImageUrl = profileImageUrl;
+    }
 
     public String getEmail() {
         return email;
@@ -22,6 +36,9 @@ public class Coach implements Serializable {
     public String getSurname() {return surname;}
 
     public String getRole() {return role;}
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
 
     public void setEmail(String email) {
         this.email = email;
@@ -35,5 +52,8 @@ public class Coach implements Serializable {
     }
 
     public void setSurname(String surname) {this.surname = surname;
+    }
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
     }
 }

@@ -14,8 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.example.proindividual.LoginActivity;
-import com.example.proindividual.models.Player;
+import com.example.proindividual.models.Coach;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,19 +23,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class PlayerProfile extends AppCompatActivity {
+public class CoachProfile extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
-    private EditText nameEditText, surnameEditText, passwordEditText, emailEditText, heightEditText, weightEditText, birthEditText;
+    private EditText nameEditText, surnameEditText, emailEditText,passwordEditText;
+    private ImageView profileImage;
+
     private ActivityResultLauncher<Intent> editProfileLauncher;
 
-    private ImageView profile_image;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_player_profile);
+        setContentView(R.layout.activity_coach_profile);
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
@@ -44,87 +44,77 @@ public class PlayerProfile extends AppCompatActivity {
 
         nameEditText = findViewById(R.id.nameEditText);
         surnameEditText = findViewById(R.id.surnameEditText);
-        passwordEditText = findViewById(R.id.passwordEditText);
         emailEditText = findViewById(R.id.emailEditText);
-        heightEditText = findViewById(R.id.heightEditText);
-        weightEditText = findViewById(R.id.weightEditText);
-        birthEditText = findViewById(R.id.birthEditText);
-        profile_image = findViewById(R.id.profile_image);
+        profileImage = findViewById(R.id.profile_image);
+        passwordEditText = findViewById(R.id.passwordEditText);
+
 
         nameEditText.setEnabled(false);
         surnameEditText.setEnabled(false);
-        passwordEditText.setEnabled(false);
         emailEditText.setEnabled(false);
-        heightEditText.setEnabled(false);
-        weightEditText.setEnabled(false);
-        birthEditText.setEnabled(false);
+        passwordEditText.setEnabled(false);
 
         ImageButton backButton = findViewById(R.id.backbtn);
         backButton.setOnClickListener(v -> {
-            Intent intent = new Intent(PlayerProfile.this, PlayerMain.class);
+            Intent intent = new Intent(CoachProfile.this, CoachMain.class);
             startActivity(intent);
         });
-
 
         editProfileLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == Activity.RESULT_OK) {
-                        loadPlayerData();
+                        loadCoachData();
                     }
                 }
         );
 
         Button editProfileButton = findViewById(R.id.editprofile_button);
         editProfileButton.setOnClickListener(v -> {
-            Intent intent = new Intent(PlayerProfile.this, EditProfile.class);
+            Intent intent = new Intent(CoachProfile.this, CoachEditProfile.class);
             editProfileLauncher.launch(intent);
         });
 
 
-        loadPlayerData();
+        loadCoachData();
 
         Button logoutButton = findViewById(R.id.logout_button);
         logoutButton.setOnClickListener(v -> {
             mAuth.signOut();
-            startActivity(new Intent(PlayerProfile.this, LoginActivity.class));
+            startActivity(new Intent(CoachProfile.this, LoginActivity.class));
             finish();
         });
     }
 
-    private void loadPlayerData() {
+    private void loadCoachData() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
             mDatabase.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    Player player = dataSnapshot.getValue(Player.class);
-                    if (player != null) {
-                        nameEditText.setText(player.getName());
-                        surnameEditText.setText(player.getSurname());
-                        passwordEditText.setText(player.getPassword());
-                        emailEditText.setText(player.getEmail());
-                        heightEditText.setText(player.getHeight());
-                        weightEditText.setText(player.getWeight());
-                        birthEditText.setText(player.getBirth());
+                    Coach coach = dataSnapshot.getValue(Coach.class);
+                    if (coach != null) {
+                        nameEditText.setText(coach.getName());
+                        surnameEditText.setText(coach.getSurname());
+                        passwordEditText.setText(coach.getPassword());
+                        emailEditText.setText(coach.getEmail());
 
-                        if (player.getProfileImageUrl() != null && !player.getProfileImageUrl().isEmpty()) {
-                            Glide.with(PlayerProfile.this)
-                                    .load(player.getProfileImageUrl())
-                                    .into(profile_image);
+                        if (coach.getProfileImageUrl() != null && !coach.getProfileImageUrl().isEmpty()) {
+                            Glide.with(CoachProfile.this).load(coach.getProfileImageUrl()).into(profileImage);
                         } else {
-                            profile_image.setImageResource(R.drawable.profile_image);
+                            profileImage.setImageResource(R.drawable.profile_image);
                         }
                     }
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Toast.makeText(PlayerProfile.this, "Failed to load user data: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CoachProfile.this, "Failed to load coach data: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
     }
-}
 
+
+}

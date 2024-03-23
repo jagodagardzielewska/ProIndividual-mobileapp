@@ -67,10 +67,17 @@ public class LoginActivity extends AppCompatActivity {
         databaseReference.child("role").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 String role = String.valueOf(task.getResult().getValue());
+                Intent intent;
                 if ("player".equals(role)) {
-                    startActivity(new Intent(LoginActivity.this, PlayerMain.class));
+                    intent = new Intent(LoginActivity.this, PlayerMain.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
                 } else if ("coach".equals(role)) {
-                    startActivity(new Intent(LoginActivity.this, CoachMain.class));
+                    intent = new Intent(LoginActivity.this, CoachMain.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Role not found!", Toast.LENGTH_SHORT).show();
                 }
@@ -79,5 +86,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
 
 }

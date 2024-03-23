@@ -52,11 +52,24 @@
         android:background="@drawable/corners2">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/prof_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             app:srcCompat="@drawable/profile_image" />
+
+        <Button
+            android:id="@+id/changeProfileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_below="@id/prof_image"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/white"
+            android:text="Ustaw zdjęcie profilowe"
+            android:textColor="@color/black"
+            android:textSize="10dp" />
 
         <TextView
             android:id="@+id/textView15"
@@ -230,7 +243,8 @@
             android:id="@+id/save_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="90dp"
             android:backgroundTint="@color/grey"
             android:fontFamily="@font/inter_semibold"
             android:text="Zapisz zmiany"

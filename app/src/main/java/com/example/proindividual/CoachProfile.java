@@ -69,14 +69,23 @@ public class CoachProfile extends AppCompatActivity {
                 }
         );
 
+
         Button editProfileButton = findViewById(R.id.editprofile_button);
         editProfileButton.setOnClickListener(v -> {
             Intent intent = new Intent(CoachProfile.this, CoachEditProfile.class);
             editProfileLauncher.launch(intent);
         });
 
+        Button inviteButton = findViewById(R.id.invite_button);
+        inviteButton.setOnClickListener(v -> {
+            Intent intent = new Intent(CoachProfile.this, InvitePlayer.class);
+            startActivity(intent);
+        });
+
 
         loadCoachData();
+
+
 
         Button logoutButton = findViewById(R.id.logout_button);
         logoutButton.setOnClickListener(v -> {

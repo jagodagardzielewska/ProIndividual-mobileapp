@@ -60,6 +60,9 @@ public class EditProfile extends AppCompatActivity {
         birthEditText = findViewById(R.id.birthEditText);
         prof_image = findViewById(R.id.prof_image);
 
+        emailEditText.setEnabled(false);
+        passwordEditText.setEnabled(false);
+
         Button editProfileButton = findViewById(R.id.changeProfileButton);
         Button saveButton = findViewById(R.id.save_button);
         ImageButton backButton = findViewById(R.id.backbtn);

@@ -61,6 +61,9 @@ public class CoachEditProfile extends AppCompatActivity {
         emailEditText = findViewById(R.id.emailEditText);
         prof_image = findViewById(R.id.profile_image);
 
+        emailEditText.setEnabled(false);
+        passwordEditText.setEnabled(false);
+
         Button saveButton = findViewById(R.id.save_button);
         ImageButton backButton = findViewById(R.id.backbtn);
 

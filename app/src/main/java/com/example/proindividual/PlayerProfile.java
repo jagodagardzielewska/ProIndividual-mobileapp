@@ -3,6 +3,7 @@ package com.example.proindividual;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -50,6 +51,7 @@ public class PlayerProfile extends AppCompatActivity {
         weightEditText = findViewById(R.id.weightEditText);
         birthEditText = findViewById(R.id.birthEditText);
         profile_image = findViewById(R.id.profile_image);
+        Button coachButton = findViewById(R.id.coachbutton);
 
         nameEditText.setEnabled(false);
         surnameEditText.setEnabled(false);
@@ -63,6 +65,15 @@ public class PlayerProfile extends AppCompatActivity {
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(PlayerProfile.this, PlayerMain.class);
             startActivity(intent);
+        });
+
+        coachButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Uruchom AddingCoachCode Activity
+                Intent intent = new Intent(PlayerProfile.this, AddingCoachCode.class);
+                startActivity(intent);
+            }
         });
 
 
@@ -91,6 +102,8 @@ public class PlayerProfile extends AppCompatActivity {
             finish();
         });
     }
+
+
 
     private void loadPlayerData() {
         FirebaseUser currentUser = mAuth.getCurrentUser();

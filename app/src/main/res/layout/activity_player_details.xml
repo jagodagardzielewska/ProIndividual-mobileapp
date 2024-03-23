@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:padding="16dp"
+    tools:context=".PlayerDetails">
+
+    <RelativeLayout
+        android:id="@+id/page_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hej, Imię!"
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/notifsbtn"
+            android:layout_width="36dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="4dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/bell" />
+
+        <ImageButton
+            android:id="@+id/profilebtn"
+            android:layout_width="36dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/usericon" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/white_background"
+        android:layout_width="match_parent"
+        android:layout_height="620dp"
+        android:layout_below="@id/page_title"
+        android:orientation="vertical"
+        android:background="@drawable/corners2"
+        android:padding="16dp">
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            app:srcCompat="@drawable/profile_image" />
+
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Imię"
+            android:textSize="24dp"
+            android:fontFamily="@font/inter_bold"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="@color/black"
+            android:padding="2dp" />
+        <TextView
+            android:id="@+id/surnameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nazwisko"
+            android:textSize="24dp"
+            android:fontFamily="@font/inter_bold"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="@color/black"
+            android:padding="2dp" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:overScrollMode="never" />
+
+
+        <Button
+            android:id="@+id/addtrening_button"
+            android:text="Dodaj trening"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/grey"
+            android:textSize="14dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/logotxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/white_background"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:text="ProIndividual"
+        android:textColor="@color/white"
+        android:textSize="24dp" />
+
+
+</RelativeLayout>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:padding="16dp"
+    tools:context=".AddTraining">
+
+    <RelativeLayout
+        android:id="@+id/page_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/notifsbtn"
+            android:layout_width="36dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="4dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/bell" />
+
+        <ImageButton
+            android:id="@+id/profilebtn"
+            android:layout_width="36dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="41dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/usericon" />
+
+        <ImageButton
+            android:id="@+id/backbtn"
+            android:layout_width="36dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="342dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/back" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutl"
+        android:layout_width="379dp"
+        android:layout_below="@id/page_title"
+        android:layout_height="622dp"
+        android:layout_marginTop="9dp"
+        android:orientation="vertical"
+        android:background="@drawable/corners2">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dodaj trening"
+            android:textColor="@color/black"
+            android:fontFamily="@font/inter_bold"
+            android:textSize="24dp"
+            android:layout_marginTop="35dp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/coachtexview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Imię Nazwisko"
+            android:textColor="#707070"
+            android:fontFamily="@font/inter_semibold"
+            android:textSize="18dp"
+            android:textAlignment="center"
+            />
+
+        <EditText
+            android:id="@+id/titleEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/corners3"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Tytuł"
+            android:textColor="#707070"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/dateEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/corners3"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Data"
+            android:textColor="#707070"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/categoryEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/corners3"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Kategoria"
+            android:textColor="#707070"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/opisEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/corners3"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Opis"
+            android:textColor="#707070"
+            android:textSize="20dp"
+            android:justificationMode="inter_word"
+            android:gravity="start|top"/>
+
+        <Button
+            android:id="@+id/add_button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/grey"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Dodaj"
+            android:textColor="@color/black"
+            android:textSize="14dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/logotxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutl"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:text="ProIndividual"
+        android:textColor="@color/white"
+        android:textSize="24dp" />
+
+
+
+</RelativeLayout>

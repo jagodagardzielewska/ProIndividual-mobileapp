@@ -111,13 +111,25 @@
         <Button
             android:id="@+id/addtrening_button"
             android:text="Dodaj trening"
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:textColor="@color/black"
             android:backgroundTint="@color/grey"
             android:textSize="14dp"/>
+
+        <Button
+            android:id="@+id/end_button"
+            android:text="Zakończ współpracę"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/grey"
+            android:textSize="14dp"/>
+
     </LinearLayout>
 
     <TextView

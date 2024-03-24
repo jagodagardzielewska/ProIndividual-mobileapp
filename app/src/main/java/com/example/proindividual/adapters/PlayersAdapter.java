@@ -1,6 +1,7 @@
 package com.example.proindividual.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,12 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.ViewHold
         }
 
 
-        holder.itemView.setOnClickListener(v -> listener.onItemClick(playerIds.get(position)));
+        holder.itemView.setOnClickListener(v -> {
+            String selectedPlayerId = playerIds.get(position);
+            Log.d("PlayersAdapter", "Item clicked with playerId: " + selectedPlayerId);
+            listener.onItemClick(selectedPlayerId);
+        });
+
     }
 
     @Override

@@ -30,10 +30,11 @@ public class PlayerProfile extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
-    private EditText nameEditText, surnameEditText, passwordEditText, emailEditText, heightEditText, weightEditText, birthEditText;
+    private EditText nameEditText, surnameEditText, emailEditText, heightEditText, weightEditText, birthEditText;
     private ActivityResultLauncher<Intent> editProfileLauncher;
 
     private ImageView profile_image;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +46,6 @@ public class PlayerProfile extends AppCompatActivity {
 
         nameEditText = findViewById(R.id.nameEditText);
         surnameEditText = findViewById(R.id.surnameEditText);
-        passwordEditText = findViewById(R.id.passwordEditText);
         emailEditText = findViewById(R.id.emailEditText);
         heightEditText = findViewById(R.id.heightEditText);
         weightEditText = findViewById(R.id.weightEditText);
@@ -55,7 +55,6 @@ public class PlayerProfile extends AppCompatActivity {
 
         nameEditText.setEnabled(false);
         surnameEditText.setEnabled(false);
-        passwordEditText.setEnabled(false);
         emailEditText.setEnabled(false);
         heightEditText.setEnabled(false);
         weightEditText.setEnabled(false);
@@ -72,6 +71,32 @@ public class PlayerProfile extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(PlayerProfile.this, AddingCoachCode.class);
                 startActivity(intent);
+            }
+        });
+
+        Button changePasswordButton = findViewById(R.id.changepassword_button);
+        changePasswordButton.setOnClickListener(v -> {
+            FirebaseUser user = mAuth.getCurrentUser();
+            if(user != null) {
+                String emailAddress = user.getEmail();
+                if(emailAddress != null && !emailAddress.isEmpty()) {
+                    mAuth.sendPasswordResetEmail(emailAddress)
+                            .addOnCompleteListener(task -> {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(PlayerProfile.this,
+                                            "Email do resetowania hasła został wysłany.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                } else {
+                    Toast.makeText(PlayerProfile.this,
+                            "Nie udało się odnaleźć adresu email użytkownika.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(PlayerProfile.this,
+                        "Nie zalogowano użytkownika.",
+                        Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -115,7 +140,6 @@ public class PlayerProfile extends AppCompatActivity {
                     if (player != null) {
                         nameEditText.setText(player.getName());
                         surnameEditText.setText(player.getSurname());
-                        passwordEditText.setText(player.getPassword());
                         emailEditText.setText(player.getEmail());
                         heightEditText.setText(player.getHeight());
                         weightEditText.setText(player.getWeight());

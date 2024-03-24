@@ -33,7 +33,7 @@ public class EditProfile extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
-    private EditText nameEditText, surnameEditText, emailEditText, heightEditText, weightEditText, birthEditText, passwordEditText;
+    private EditText nameEditText, surnameEditText, emailEditText, heightEditText, weightEditText, birthEditText;
     private ImageView prof_image;
     private FirebaseStorage storage;
     private StorageReference storageReference;
@@ -53,7 +53,6 @@ public class EditProfile extends AppCompatActivity {
 
         nameEditText = findViewById(R.id.nameEditText);
         surnameEditText = findViewById(R.id.surnameEditText);
-        passwordEditText = findViewById(R.id.passwordEditText);
         emailEditText = findViewById(R.id.emailEditText);
         heightEditText = findViewById(R.id.heightEditText);
         weightEditText = findViewById(R.id.weightEditText);
@@ -61,7 +60,6 @@ public class EditProfile extends AppCompatActivity {
         prof_image = findViewById(R.id.prof_image);
 
         emailEditText.setEnabled(false);
-        passwordEditText.setEnabled(false);
 
         Button editProfileButton = findViewById(R.id.changeProfileButton);
         Button saveButton = findViewById(R.id.save_button);
@@ -107,7 +105,6 @@ public class EditProfile extends AppCompatActivity {
                     if (player != null) {
                         nameEditText.setText(player.getName());
                         surnameEditText.setText(player.getSurname());
-                        passwordEditText.setText(player.getPassword());
                         emailEditText.setText(player.getEmail());
                         heightEditText.setText(player.getHeight());
                         weightEditText.setText(player.getWeight());
@@ -138,7 +135,7 @@ public class EditProfile extends AppCompatActivity {
             String userId = currentUser.getUid();
             Player updatedPlayer = new Player(
                     emailEditText.getText().toString().trim(),
-                    passwordEditText.getText().toString().trim(),
+                    "password",
                     nameEditText.getText().toString().trim(),
                     surnameEditText.getText().toString().trim(),
                     heightEditText.getText().toString().trim(),

@@ -34,7 +34,7 @@ public class CoachEditProfile extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
-    private EditText nameEditText, surnameEditText, emailEditText, passwordEditText;
+    private EditText nameEditText, surnameEditText, emailEditText;
     private ImageView prof_image;
     private FirebaseStorage storage;
     private StorageReference storageReference;
@@ -57,12 +57,10 @@ public class CoachEditProfile extends AppCompatActivity {
 
         nameEditText = findViewById(R.id.nameEditText);
         surnameEditText = findViewById(R.id.surnameEditText);
-        passwordEditText = findViewById(R.id.passwordEditText);
         emailEditText = findViewById(R.id.emailEditText);
         prof_image = findViewById(R.id.profile_image);
 
         emailEditText.setEnabled(false);
-        passwordEditText.setEnabled(false);
 
         Button saveButton = findViewById(R.id.save_button);
         ImageButton backButton = findViewById(R.id.backbtn);
@@ -105,7 +103,6 @@ public class CoachEditProfile extends AppCompatActivity {
                         nameEditText.setText(coach.getName());
                         surnameEditText.setText(coach.getSurname());
                         emailEditText.setText(coach.getEmail());
-                        passwordEditText.getText().toString().trim();
 
                         if (coach.getProfileImageUrl() != null && !coach.getProfileImageUrl().isEmpty()) {
                             Glide.with(CoachEditProfile.this).load(coach.getProfileImageUrl()).into(prof_image);
@@ -129,7 +126,7 @@ public class CoachEditProfile extends AppCompatActivity {
             String userId = currentUser.getUid();
             Coach updatedCoach = new Coach (
                     emailEditText.getText().toString().trim(),
-                    passwordEditText.getText().toString().trim(),
+                    "password",
                     nameEditText.getText().toString().trim(),
                     surnameEditText.getText().toString().trim(),
                     "coach",

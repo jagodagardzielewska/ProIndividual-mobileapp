@@ -110,29 +110,7 @@
             android:inputType="textEmailAddress"
             android:textSize="17dp"/>
 
-        <TextView
-            android:id="@+id/passwordTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hasło"
-            android:fontFamily="@font/inter_bold"
-            android:textSize="17dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="8dp"
-            android:textColor="@color/black"/>
 
-        <EditText
-            android:id="@+id/passwordEditText"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:background="@drawable/corners1"
-            android:backgroundTint="#E6E6E6"
-            android:fontFamily="@font/inter_semibold"
-            android:textColorHint="#707070"
-            android:hint="Hasło"
-            android:paddingLeft="8dp"
-            android:inputType="textEmailAddress"
-            android:textSize="17dp"/>
 
         <TextView
             android:id="@+id/emailTextView"

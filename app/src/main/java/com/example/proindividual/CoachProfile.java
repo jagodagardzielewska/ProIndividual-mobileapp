@@ -28,7 +28,7 @@ public class CoachProfile extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
-    private EditText nameEditText, surnameEditText, emailEditText,passwordEditText;
+    private EditText nameEditText, surnameEditText, emailEditText;
     private ImageView profileImage;
 
     private ActivityResultLauncher<Intent> editProfileLauncher;
@@ -46,18 +46,42 @@ public class CoachProfile extends AppCompatActivity {
         surnameEditText = findViewById(R.id.surnameEditText);
         emailEditText = findViewById(R.id.emailEditText);
         profileImage = findViewById(R.id.profile_image);
-        passwordEditText = findViewById(R.id.passwordEditText);
 
 
         nameEditText.setEnabled(false);
         surnameEditText.setEnabled(false);
         emailEditText.setEnabled(false);
-        passwordEditText.setEnabled(false);
 
         ImageButton backButton = findViewById(R.id.backbtn);
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(CoachProfile.this, CoachMain.class);
             startActivity(intent);
+        });
+
+        Button changePasswordButton = findViewById(R.id.changepassword_button);
+        changePasswordButton.setOnClickListener(v -> {
+            FirebaseUser user = mAuth.getCurrentUser();
+            if(user != null) {
+                String emailAddress = user.getEmail();
+                if(emailAddress != null && !emailAddress.isEmpty()) {
+                    mAuth.sendPasswordResetEmail(emailAddress)
+                            .addOnCompleteListener(task -> {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(CoachProfile.this,
+                                            "Email do resetowania hasła został wysłany.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                } else {
+                    Toast.makeText(CoachProfile.this,
+                            "Nie udało się odnaleźć adresu email użytkownika.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(CoachProfile.this,
+                        "Nie zalogowano użytkownika.",
+                        Toast.LENGTH_SHORT).show();
+            }
         });
 
         editProfileLauncher = registerForActivityResult(
@@ -106,7 +130,6 @@ public class CoachProfile extends AppCompatActivity {
                     if (coach != null) {
                         nameEditText.setText(coach.getName());
                         surnameEditText.setText(coach.getSurname());
-                        passwordEditText.setText(coach.getPassword());
                         emailEditText.setText(coach.getEmail());
 
                         if (coach.getProfileImageUrl() != null && !coach.getProfileImageUrl().isEmpty()) {

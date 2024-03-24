@@ -14,20 +14,11 @@
         android:layout_height="wrap_content">
 
         <ImageButton
-            android:id="@+id/notifsbtn"
-            android:layout_width="36dp"
-            android:layout_height="35dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="4dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/bell" />
-
-        <ImageButton
             android:id="@+id/profilebtn"
             android:layout_width="36dp"
             android:layout_height="35dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="41dp"
+            android:layout_marginEnd="15dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/usericon" />
 
@@ -44,34 +35,32 @@
 
     <LinearLayout
         android:id="@+id/layoutl"
-        android:layout_width="379dp"
+        android:layout_width="match_parent"
+        android:layout_height="765dp"
         android:layout_below="@id/page_title"
-        android:layout_height="622dp"
-        android:layout_marginTop="9dp"
-        android:orientation="vertical"
-        android:background="@drawable/corners2">
+        android:background="@drawable/corners2"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dodaj trening"
-            android:textColor="@color/black"
-            android:fontFamily="@font/inter_bold"
-            android:textSize="24dp"
             android:layout_marginTop="35dp"
-            android:textAlignment="center"/>
+            android:fontFamily="@font/inter_bold"
+            android:text="Dodaj trening"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="24dp" />
 
         <TextView
             android:id="@+id/coachtexview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Imię Nazwisko"
-            android:textColor="#707070"
             android:fontFamily="@font/inter_semibold"
-            android:textSize="18dp"
+            android:text="Imię Nazwisko"
             android:textAlignment="center"
-            />
+            android:textColor="#707070"
+            android:textSize="18dp" />
 
         <EditText
             android:id="@+id/titleEditText"
@@ -121,11 +110,11 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/corners3"
             android:fontFamily="@font/inter_semibold"
+            android:gravity="start|top"
+            android:justificationMode="inter_word"
             android:text="Opis"
             android:textColor="#707070"
-            android:textSize="20dp"
-            android:justificationMode="inter_word"
-            android:gravity="start|top"/>
+            android:textSize="20dp" />
 
         <Button
             android:id="@+id/add_button"

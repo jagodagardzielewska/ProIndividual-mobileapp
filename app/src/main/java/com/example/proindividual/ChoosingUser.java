@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class ChoosingUser extends AppCompatActivity {
 
@@ -16,6 +17,12 @@ public class ChoosingUser extends AppCompatActivity {
 
         Button buttonPlayer = findViewById(R.id.player_button);
         Button buttonCoach = findViewById(R.id.coach_button);
+
+        Button backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(ChoosingUser.this, LoginActivity.class);
+            startActivity(intent);
+        });
 
         buttonPlayer.setOnClickListener(new View.OnClickListener() {
             @Override

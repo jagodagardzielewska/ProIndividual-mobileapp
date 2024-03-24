@@ -23,12 +23,12 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="76dp"
         android:fontFamily="@font/inter_bold"
         android:text="Przenieś trening na wyższy poziom."
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="24dp"
+        android:textSize="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,6 +61,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.441"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="377dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="192dp"
+        android:backgroundTint="@color/grey"
+        android:fontFamily="@font/inter_semibold"
+        android:text="Powrót"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 

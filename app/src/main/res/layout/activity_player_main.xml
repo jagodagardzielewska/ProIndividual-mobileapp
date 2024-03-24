@@ -23,20 +23,11 @@
         android:textStyle="bold" />
 
     <ImageButton
-        android:id="@+id/notifsbtn"
-        android:layout_width="36dp"
-        android:layout_height="35dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="4dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/bell" />
-
-    <ImageButton
         android:id="@+id/profilebtn"
         android:layout_width="36dp"
         android:layout_height="35dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="41dp"
+        android:layout_marginEnd="15dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/usericon" />
 
@@ -45,7 +36,7 @@
   <LinearLayout
       android:id="@+id/white_background"
       android:layout_width="match_parent"
-      android:layout_height="620dp"
+      android:layout_height="765dp"
       android:layout_below="@id/page_title"
       android:orientation="vertical"
       android:background="@drawable/corners2"

@@ -36,7 +36,7 @@
     <LinearLayout
         android:id="@+id/white_background"
         android:layout_width="match_parent"
-        android:layout_height="620dp"
+        android:layout_height="765dp"
         android:layout_below="@id/page_title"
         android:orientation="vertical"
         android:background="@drawable/corners2"

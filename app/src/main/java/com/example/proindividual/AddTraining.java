@@ -1,10 +1,13 @@
 package com.example.proindividual;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import com.example.proindividual.models.Training;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +38,12 @@ public class AddTraining extends AppCompatActivity {
         coachUserId = getIntent().getStringExtra("coachId");
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        ImageButton backButton = findViewById(R.id.backbtn);
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(AddTraining.this, PlayerDetails.class);
+            startActivity(intent);
+        });
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override

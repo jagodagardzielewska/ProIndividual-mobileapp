@@ -64,6 +64,7 @@ public class EditProfile extends AppCompatActivity {
         Button editProfileButton = findViewById(R.id.changeProfileButton);
         Button saveButton = findViewById(R.id.save_button);
         ImageButton backButton = findViewById(R.id.backbtn);
+        ImageButton profileButton = findViewById(R.id.profilebtn);
 
         someActivityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -85,6 +86,12 @@ public class EditProfile extends AppCompatActivity {
         backButton.setOnClickListener(v -> finish());
 
         loadUserData();
+
+        profileButton.setOnClickListener(v -> {
+            Intent intent = new Intent(EditProfile.this, PlayerProfile.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+        });
     }
 
     private void openFileChooser() {

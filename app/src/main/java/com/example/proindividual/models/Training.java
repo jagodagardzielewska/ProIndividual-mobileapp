@@ -9,6 +9,7 @@ public class Training {
     private String date;
     private String details;
     private Ratings ratings;
+    private boolean completed;
 
     public Training() {
     }
@@ -50,7 +51,7 @@ public class Training {
     }
 
 
-        public Training(String trainingId, String coachUserId, String playerUserId, String title, String category, String date, String details) {
+        public Training(String trainingId, String coachUserId, String playerUserId, String title, String category, String date, String details, boolean completed) {
         this.trainingId = trainingId;
         this.coachUserId = coachUserId;
         this.playerUserId = playerUserId;
@@ -58,7 +59,16 @@ public class Training {
         this.category = category;
         this.date = date;
         this.details = details;
+        this.completed = completed = false;
 
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 
     public String getTrainingId() {

@@ -28,6 +28,12 @@ import java.util.List;
 public class PlayerMain extends AppCompatActivity {
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        loadUserTrainings(); // Ponownie wczytaj treningi, aby lista była aktualna.
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player_main);
@@ -51,7 +57,9 @@ public class PlayerMain extends AppCompatActivity {
                 List<Training> trainingList = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Training training = snapshot.getValue(Training.class);
-                    trainingList.add(training);
+                    if (training != null && !training.isCompleted()) {
+                        trainingList.add(training);
+                    }
                 }
                 updateRecyclerView(trainingList);
             }
@@ -62,6 +70,7 @@ public class PlayerMain extends AppCompatActivity {
             }
         });
     }
+
 
     private void updateRecyclerView(List<Training> trainingList) {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);

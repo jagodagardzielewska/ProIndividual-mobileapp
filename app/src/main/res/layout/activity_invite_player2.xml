@@ -73,7 +73,7 @@
             android:fontFamily="@font/inter_bold"
             android:textSize="16dp"
             android:layout_gravity="center_horizontal"
-            android:text="Powyższy kod będzie aktywny 24h od momentu wygenerowania. Zaproszony zawodnik będzie mógł zacząć współpracę z Tobą po wpisaniu tego kodu w zakładce “Twoi trenerzy” w profilu." />
+            android:text="Powyższy kod będzie aktywny 24h od momentu wygenerowania. Zaproszony zawodnik będzie mógł zacząć współpracę z Tobą po wpisaniu tego kodu w profilu." />
 
 
         <Button

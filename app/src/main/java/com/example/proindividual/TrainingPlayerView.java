@@ -3,6 +3,7 @@ package com.example.proindividual;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,18 @@ public class TrainingPlayerView extends AppCompatActivity {
         endButton.setOnClickListener(v -> {
             Intent intent = new Intent(TrainingPlayerView.this, TrainingEnding.class);
             intent.putExtra("trainingId", trainingId);
+            startActivity(intent);
+        });
+
+        ImageButton backButton = findViewById(R.id.backbtn);
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(TrainingPlayerView.this, PlayerMain.class);
+            startActivity(intent);
+        });
+        ImageButton profileButton = findViewById(R.id.profilebtn);
+        profileButton.setOnClickListener(v -> {
+            Intent intent = new Intent(TrainingPlayerView.this, PlayerProfile.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
         });
 

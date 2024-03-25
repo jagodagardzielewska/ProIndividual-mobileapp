@@ -70,6 +70,7 @@
             android:text="Kod powinien mieć dokładnie 12 cyfr."
             android:textColor="@color/error_message"
             android:textSize="15dp"
+            android:visibility="invisible"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"/>
 

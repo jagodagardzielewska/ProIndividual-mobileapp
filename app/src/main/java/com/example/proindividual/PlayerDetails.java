@@ -1,10 +1,12 @@
 package com.example.proindividual;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,11 +28,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 public class PlayerDetails extends AppCompatActivity {
 
@@ -39,6 +49,12 @@ public class PlayerDetails extends AppCompatActivity {
     private TextView nameTextView, surnameTextView;
     private String playerId;
     private Button endCooperationButton;
+
+    protected void onResume() {
+        super.onResume();
+        loadTrainings(playerId);
+        countCompletedTrainings(playerId);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +68,17 @@ public class PlayerDetails extends AppCompatActivity {
 
         playerId = getIntent().getStringExtra("playerId");
 
+        ImageButton backButton = findViewById(R.id.backbtn);
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(PlayerDetails.this, CoachMain.class);
+            startActivity(intent);
+        });
+        ImageButton profileButton = findViewById(R.id.profilebtn);
+        profileButton.setOnClickListener(v -> {
+            Intent intent = new Intent(PlayerDetails.this, CoachProfile.class);
+            startActivity(intent);
+        });
+
         Button addTrainingButton = findViewById(R.id.addtrening_button);
         addTrainingButton.setOnClickListener(v -> {
             Intent intent = new Intent(PlayerDetails.this, AddTraining.class);
@@ -64,9 +91,36 @@ public class PlayerDetails extends AppCompatActivity {
 
         loadPlayerDetails(playerId);
         loadTrainings(playerId);
+        countCompletedTrainings(playerId);
 
         endCooperationButton.setOnClickListener(v -> showEndCooperationDialog());
     }
+
+    private void countCompletedTrainings(String playerId) {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("trainings");
+        ref.orderByChild("playerUserId").equalTo(playerId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int completedCount = 0;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Training training = snapshot.getValue(Training.class);
+                    if (training != null && Boolean.TRUE.equals(training.isCompleted())) {
+                        completedCount++;
+                    }
+                }
+                TextView completedTrainingsView = findViewById(R.id.wykonane_treningi);
+                completedTrainingsView.setText("Ukończone treningi: " + completedCount);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(PlayerDetails.this, "Nie udało się załadować liczby ukończonych treningów.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
 
     private void showEndCooperationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -126,17 +180,18 @@ public class PlayerDetails extends AppCompatActivity {
 
 
     private void loadTrainings(String playerId) {
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("trainings");
-                ref.orderByChild("playerUserId").equalTo(playerId).addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("trainings");
+        ref.orderByChild("playerUserId").equalTo(playerId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<Training> trainingList = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Training training = snapshot.getValue(Training.class);
-                    trainingList.add(training);
+                    if (training != null && !training.isCompleted()) {
+                        trainingList.add(training);
+                    }
                 }
                 updateRecyclerView(trainingList);
-
                 String currentCoachId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 calculateAverageRatingsForCoach(playerId, currentCoachId);
             }
@@ -148,6 +203,7 @@ public class PlayerDetails extends AppCompatActivity {
         });
     }
 
+
     private void updateRecyclerView(List<Training> trainingList) {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         TrainingAdapter adapter = new TrainingAdapter(this, trainingList, true);
@@ -155,6 +211,27 @@ public class PlayerDetails extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    private int calculateAge(String birthdate) {
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            Date birthDate = dateFormat.parse(birthdate);
+            Calendar birthDay = Calendar.getInstance();
+            birthDay.setTimeInMillis(birthDate.getTime());
+
+            Calendar today = Calendar.getInstance();
+
+            int age = today.get(Calendar.YEAR) - birthDay.get(Calendar.YEAR);
+
+            if (today.get(Calendar.DAY_OF_YEAR) < birthDay.get(Calendar.DAY_OF_YEAR)){
+                age--;
+            }
+
+            return age;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 
     private void loadPlayerDetails(String playerId) {
         mDatabase.child(playerId).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -168,6 +245,13 @@ public class PlayerDetails extends AppCompatActivity {
                             .load(player.getProfileImageUrl())
                             .placeholder(R.drawable.profile_image)
                             .into(profileImageView);
+
+                    int age = calculateAge(player.getBirth());
+
+                    TextView detailsTextView = findViewById(R.id.averagssse_satisfaction);
+                    String detailsText = String.format(Locale.getDefault(), "Waga: %s kg Wzrost: %s cm Wiek: %d lat",
+                            player.getWeight(), player.getHeight(), age);
+                    detailsTextView.setText(detailsText);
                 }
             }
 
@@ -204,8 +288,9 @@ public class PlayerDetails extends AppCompatActivity {
 
                     TextView averageSatisfactionView = findViewById(R.id.average_satisfaction);
                     TextView averageEffortView = findViewById(R.id.average_effort);
-                    averageSatisfactionView.setText(String.format(Locale.getDefault(), "%.2f", averageSatisfaction));
-                    averageEffortView.setText(String.format(Locale.getDefault(), "%.2f", averageEffort));
+                    averageSatisfactionView.setText(String.format(Locale.getDefault(), "Średnie zadowolenie z treningów: %.2f/10", averageSatisfaction));
+                    averageEffortView.setText(String.format(Locale.getDefault(), "Średnia skala RPE: %.2f/10", averageEffort));
+
                 } else {
                 }
             }

@@ -55,11 +55,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void showResetPasswordDialog() {
-        // Utwórz AlertDialog do wprowadzenia e-maila
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Resetowanie hasła");
 
-        // Ustaw custom layout z EditText dla e-maila
         final EditText inputEmail = new EditText(this);
         inputEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         inputEmail.setHint("Wpisz swój e-mail");

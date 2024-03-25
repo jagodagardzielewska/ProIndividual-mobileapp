@@ -71,9 +71,10 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/corners3"
             android:fontFamily="@font/inter_semibold"
-            android:text="Tytuł"
+            android:hint="Tytuł"
             android:textColor="#707070"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:maxLength="40"/>
 
         <EditText
             android:id="@+id/dateEditText"
@@ -84,9 +85,10 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/corners3"
             android:fontFamily="@font/inter_semibold"
-            android:text="Data"
+            android:hint="Data"
             android:textColor="#707070"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:maxLength="10"/>
 
         <EditText
             android:id="@+id/categoryEditText"
@@ -97,9 +99,10 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/corners3"
             android:fontFamily="@font/inter_semibold"
-            android:text="Kategoria"
+            android:hint="Kategoria"
             android:textColor="#707070"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:maxLength="40"/>
 
         <EditText
             android:id="@+id/opisEditText"
@@ -112,9 +115,10 @@
             android:fontFamily="@font/inter_semibold"
             android:gravity="start|top"
             android:justificationMode="inter_word"
-            android:text="Opis"
+            android:hint="Opis"
             android:textColor="#707070"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:maxLength="200"/>
 
         <Button
             android:id="@+id/add_button"

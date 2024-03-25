@@ -1,9 +1,11 @@
 package com.example.proindividual;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +26,20 @@ public class AddingCoachCode extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         codeEditText = findViewById(R.id.code_editText);
+        ImageButton backButton = findViewById(R.id.backbtn);
         Button confirmButton = findViewById(R.id.button);
+
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(AddingCoachCode.this, PlayerProfile.class);
+            startActivity(intent);
+        });
+        ImageButton profileButton = findViewById(R.id.profilebtn);
+        profileButton.setOnClickListener(v -> {
+            Intent intent = new Intent(AddingCoachCode.this, PlayerProfile.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+        });
+
 
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override

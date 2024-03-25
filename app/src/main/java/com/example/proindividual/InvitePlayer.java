@@ -3,6 +3,8 @@ package com.example.proindividual;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -24,10 +26,12 @@ public class InvitePlayer extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        ImageButton backButton = findViewById(R.id.backbtn);
+        ImageButton profileButton = findViewById(R.id.profilebtn);
         Button generateButton = findViewById(R.id.generate_button);
         generateButton.setOnClickListener(v -> {
             String inviteCode = generateRandomCode(9);
-            long expirationTime = System.currentTimeMillis() + (24 * 60 * 60 * 1000); // 24 hours from now
+            long expirationTime = System.currentTimeMillis() + (24 * 60 * 60 * 1000);
             String userId = mAuth.getCurrentUser().getUid();
 
 
@@ -38,6 +42,20 @@ public class InvitePlayer extends AppCompatActivity {
             intent.putExtra("inviteCode", inviteCode);
             startActivity(intent);
         });
+
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(InvitePlayer.this, CoachProfile.class);
+            startActivity(intent);
+            finish();
+        });
+
+        profileButton.setOnClickListener(v -> {
+            Intent intent = new Intent(InvitePlayer.this, CoachProfile.class);
+            startActivity(intent);
+            finish();
+        });
+
+
     }
 
     private String generateRandomCode(int length) {

@@ -3,27 +3,32 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/item_background"
+    android:layout_marginTop="5dp">
 
     <TextView
         android:id="@+id/trainingTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:textStyle="bold"
-        android:text="Tytuł treningu"/>
+        android:fontFamily="@font/inter_bold"
+        android:text="Tytuł treningu"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/trainingCategoryTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:text="Kategoria"/>
+        android:text="Kategoria"
+        android:fontFamily="@font/inter_semibold"/>
 
     <TextView
         android:id="@+id/trainingDateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:text="Data"/>
+        android:text="Data"
+        android:fontFamily="@font/inter_medium"/>
 </LinearLayout>

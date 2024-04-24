@@ -87,6 +87,7 @@ public class RegisterCoach2 extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         String userId = mAuth.getCurrentUser().getUid();
                         DatabaseReference currentUserDb = mDatabase.child("users").child(userId);
+                        coach.setPassword(null);
                         currentUserDb.setValue(coach).addOnCompleteListener(task1 -> {
                             if (task1.isSuccessful()) {
                                 Toast.makeText(RegisterCoach2.this, "Rejestracja pomyślna", Toast.LENGTH_SHORT).show();

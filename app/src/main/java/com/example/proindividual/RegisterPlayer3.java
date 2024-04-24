@@ -118,6 +118,7 @@ public class RegisterPlayer3 extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         String userId = mAuth.getCurrentUser().getUid();
                         DatabaseReference currentUserDb = mDatabase.child("users").child(userId);
+                        player.setPassword(null);
                         currentUserDb.setValue(player).addOnCompleteListener(task1 -> {
                             if (task1.isSuccessful()) {
                                 Toast.makeText(RegisterPlayer3.this, "Rejestracja pomyślna", Toast.LENGTH_SHORT).show();

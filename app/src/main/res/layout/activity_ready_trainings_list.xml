@@ -35,7 +35,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ready_trainings_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="750dp"
         android:layout_below="@id/page_title"
         android:layout_marginTop="10dp"
         android:background="@drawable/corners2"

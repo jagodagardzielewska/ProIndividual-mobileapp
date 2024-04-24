@@ -23,50 +23,54 @@ import com.google.firebase.database.ValueEventListener;
 public class AddTraining extends AppCompatActivity {
 
     private EditText titleEditText, categoryEditText, dateEditText, detailsEditText;
-    private Button addButton;
+    private Button addButton, addReadyTrainingButton;
     private DatabaseReference mDatabase;
-    private String playerId, coachUserId;
+    private String playerId, coachId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_training);
 
-
         titleEditText = findViewById(R.id.titleEditText);
         categoryEditText = findViewById(R.id.categoryEditText);
         dateEditText = findViewById(R.id.dateEditText);
         detailsEditText = findViewById(R.id.opisEditText);
         addButton = findViewById(R.id.add_button);
-
+        addReadyTrainingButton = findViewById(R.id.add2_button);
 
         playerId = getIntent().getStringExtra("playerId");
-
-        coachUserId = getIntent().getStringExtra("coachId");
+        coachId = getIntent().getStringExtra("coachId");
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         ImageButton backButton = findViewById(R.id.backbtn);
-        backButton.setOnClickListener(v -> {
-            Intent intent = new Intent(AddTraining.this, PlayerDetails.class);
-            startActivity(intent);
-        });
+        backButton.setOnClickListener(v -> finish());
+
         ImageButton profileButton = findViewById(R.id.profilebtn);
         profileButton.setOnClickListener(v -> {
             Intent intent = new Intent(AddTraining.this, CoachProfile.class);
             startActivity(intent);
         });
 
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addTraining();
+        addButton.setOnClickListener(v -> addTraining());
+
+        addReadyTrainingButton.setOnClickListener(v -> {
+            if (playerId == null || coachId == null) {
+                Toast.makeText(this, "Brak identyfikatorów.", Toast.LENGTH_SHORT).show();
+                return;
             }
+            Intent intent = new Intent(AddTraining.this, ReadyTrainingsListActivity.class);
+            intent.putExtra("playerId", playerId);
+            intent.putExtra("coachId", coachId);
+            startActivity(intent);
         });
+
+        loadPlayerDetails();
     }
 
     private void loadPlayerDetails() {
-        DatabaseReference playerRef = FirebaseDatabase.getInstance().getReference("players").child(playerId);
+        DatabaseReference playerRef = mDatabase.child("players").child(playerId);
         playerRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -85,7 +89,6 @@ public class AddTraining extends AppCompatActivity {
         });
     }
 
-
     private void addTraining() {
         String title = titleEditText.getText().toString().trim();
         String category = categoryEditText.getText().toString().trim();
@@ -93,9 +96,7 @@ public class AddTraining extends AppCompatActivity {
         String details = detailsEditText.getText().toString().trim();
 
         String trainingId = mDatabase.child("trainings").push().getKey();
-
-        Training training = new Training(trainingId, coachUserId, playerId, title, category, date, details, false);
-
+        Training training = new Training(trainingId, coachId, playerId, title, category, date, details, false);
 
         mDatabase.child("trainings").child(trainingId).setValue(training).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -107,3 +108,4 @@ public class AddTraining extends AppCompatActivity {
         });
     }
 }
+

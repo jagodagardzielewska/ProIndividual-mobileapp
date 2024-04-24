@@ -166,6 +166,28 @@
             android:backgroundTint="@color/grey"
             android:textSize="14dp"/>
 
+        <Button
+            android:id="@+id/endtrainings_button"
+            android:text="Zakończone treningi"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/grey"
+            android:textSize="14dp"/>
+
+        <Button
+            android:id="@+id/summary_button"
+            android:text="Podsumowanie treningów"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/grey"
+            android:textSize="14dp"/>
+
     </LinearLayout>
 
     <TextView

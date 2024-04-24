@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -50,6 +51,8 @@ public class PlayerDetails extends AppCompatActivity {
     private String playerId;
     private Button endCooperationButton;
 
+    private Button endTrainingsButton;
+
     protected void onResume() {
         super.onResume();
         loadTrainings(playerId);
@@ -68,6 +71,14 @@ public class PlayerDetails extends AppCompatActivity {
 
         playerId = getIntent().getStringExtra("playerId");
 
+        endTrainingsButton = findViewById(R.id.endtrainings_button);
+        endTrainingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToEndedTrainings();
+            }
+        });
+
         ImageButton backButton = findViewById(R.id.backbtn);
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(PlayerDetails.this, CoachMain.class);
@@ -82,6 +93,14 @@ public class PlayerDetails extends AppCompatActivity {
         Button addTrainingButton = findViewById(R.id.addtrening_button);
         addTrainingButton.setOnClickListener(v -> {
             Intent intent = new Intent(PlayerDetails.this, AddTraining.class);
+            intent.putExtra("playerId", playerId);
+            intent.putExtra("coachId", FirebaseAuth.getInstance().getCurrentUser().getUid());
+            startActivity(intent);
+        });
+
+        Button TrainingsSummaryButton = findViewById(R.id.summary_button);
+        TrainingsSummaryButton.setOnClickListener(v->{
+            Intent intent = new Intent(PlayerDetails.this, TrainingsSummaryCoach.class);
             intent.putExtra("playerId", playerId);
             intent.putExtra("coachId", FirebaseAuth.getInstance().getCurrentUser().getUid());
             startActivity(intent);
@@ -119,7 +138,12 @@ public class PlayerDetails extends AppCompatActivity {
         });
     }
 
-
+    private void navigateToEndedTrainings() {
+        Intent intent = new Intent(PlayerDetails.this, EndedTrainings.class);
+        intent.putExtra("playerId", playerId);
+        intent.putExtra("coachId", FirebaseAuth.getInstance().getCurrentUser().getUid());
+        startActivity(intent);
+    }
 
 
     private void showEndCooperationDialog() {
@@ -172,11 +196,6 @@ public class PlayerDetails extends AppCompatActivity {
             }
         });
     }
-
-
-
-
-
 
 
     private void loadTrainings(String playerId) {

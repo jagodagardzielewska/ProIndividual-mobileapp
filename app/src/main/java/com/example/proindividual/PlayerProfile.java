@@ -66,6 +66,13 @@ public class PlayerProfile extends AppCompatActivity {
             startActivity(intent);
         });
 
+        Button summaryButton = findViewById(R.id.summary_button);
+        summaryButton.setOnClickListener(v -> {
+            Intent intent = new Intent(PlayerProfile.this, TrainingsSummary.class);
+            startActivity(intent);
+        });
+
+
         coachButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

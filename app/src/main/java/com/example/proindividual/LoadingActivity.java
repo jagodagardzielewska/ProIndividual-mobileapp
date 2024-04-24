@@ -76,9 +76,8 @@ public class LoadingActivity extends AppCompatActivity {
         TaskCompletionSource<String> taskCompletionSource = new TaskCompletionSource<>();
 
         if (currentUser == null) {
-            taskCompletionSource.setResult(null);
+            taskCompletionSource.setResult(null); // Użytkownik niezalogowany
         } else {
-
             String userId = currentUser.getUid();
             DatabaseReference roleRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("role");
 
@@ -88,6 +87,7 @@ public class LoadingActivity extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         taskCompletionSource.setResult(dataSnapshot.getValue(String.class));
                     } else {
+                        FirebaseAuth.getInstance().signOut(); // Użytkownik nie ma już rekordu w bazie
                         taskCompletionSource.setResult(null);
                     }
                 }
@@ -98,8 +98,8 @@ public class LoadingActivity extends AppCompatActivity {
                 }
             });
         }
-
         return taskCompletionSource.getTask();
     }
+
 
 }

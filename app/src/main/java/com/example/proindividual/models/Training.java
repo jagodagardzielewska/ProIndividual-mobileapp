@@ -10,6 +10,7 @@ public class Training {
     private String details;
     private Ratings ratings;
     private boolean completed;
+    private long duration;
 
     public Training() {
     }
@@ -60,7 +61,16 @@ public class Training {
         this.date = date;
         this.details = details;
         this.completed = completed = false;
+        this.duration = duration;
 
+    }
+
+    public long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(long duration) {
+        this.duration = duration;
     }
 
     public boolean isCompleted() {

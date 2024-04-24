@@ -63,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
         inputEmail.setHint("Wpisz swój e-mail");
         builder.setView(inputEmail);
 
-        // Ustaw przyciski
         builder.setPositiveButton("Resetuj", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

@@ -33,11 +33,17 @@
 
     </RelativeLayout>
 
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="379dp"
+        android:layout_height="765dp"
+        android:layout_below="@id/page_title">
+
     <LinearLayout
         android:id="@+id/layoutl"
-        android:layout_width="match_parent"
         android:layout_below="@id/page_title"
-        android:layout_height="wrap_content"
+        android:layout_width="379dp"
+        android:layout_height="765dp"
         android:orientation="vertical"
         android:background="@drawable/corners2">
 
@@ -210,9 +216,9 @@
         <Button
             android:id="@+id/save_button"
             android:layout_width="match_parent"
-            android:layout_height="59dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="120dp"
             android:backgroundTint="@color/grey"
             android:fontFamily="@font/inter_semibold"
             android:text="Zapisz zmiany"
@@ -221,12 +227,13 @@
 
 
     </LinearLayout>
+    </ScrollView>
 
     <TextView
         android:id="@+id/logotxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/layoutl"
+        android:layout_below="@id/scroll"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:text="ProIndividual"

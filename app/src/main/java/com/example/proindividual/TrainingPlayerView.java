@@ -29,7 +29,7 @@ public class TrainingPlayerView extends AppCompatActivity {
 
         Button endButton = findViewById(R.id.end_button);
         endButton.setOnClickListener(v -> {
-            Intent intent = new Intent(TrainingPlayerView.this, TrainingEnding.class);
+            Intent intent = new Intent(TrainingPlayerView.this, TrainingSessionActivity.class);
             intent.putExtra("trainingId", trainingId);
             startActivity(intent);
         });

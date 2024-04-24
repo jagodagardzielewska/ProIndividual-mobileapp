@@ -33,11 +33,18 @@
 
     </RelativeLayout>
 
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="379dp"
+        android:layout_height="765dp"
+        android:layout_below="@id/page_title"
+        android:background="@drawable/corners2">
+
     <LinearLayout
         android:id="@+id/layoutl"
-        android:layout_width="match_parent"
+        android:layout_width="379dp"
         android:layout_below="@id/page_title"
-        android:layout_height="wrap_content"
+        android:layout_height="765dp"
         android:orientation="vertical"
         android:background="@drawable/corners2">
 
@@ -236,13 +243,25 @@
             android:textColor="@color/black"
             android:textSize="17dp" />
 
+        <Button
+            android:id="@+id/summary_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:backgroundTint="@color/grey"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Podsumowanie treningów"
+            android:textColor="@color/black"
+            android:textSize="17dp" />
+
     </LinearLayout>
+    </ScrollView>
 
     <TextView
         android:id="@+id/logotxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/layoutl"
+        android:layout_below="@id/scroll"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:text="ProIndividual"

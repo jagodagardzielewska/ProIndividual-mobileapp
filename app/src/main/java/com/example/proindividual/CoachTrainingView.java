@@ -3,8 +3,10 @@ package com.example.proindividual;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +29,6 @@ public class CoachTrainingView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coach_training_view);
 
-
         titleTextView = findViewById(R.id.textView7);
         dateTextView = findViewById(R.id.datetextView);
         categoryTextView = findViewById(R.id.categorytextView);
@@ -41,6 +42,8 @@ public class CoachTrainingView extends AppCompatActivity {
             finish();
             return;
         }
+
+        setupNavigation();
 
 
         mDatabase = FirebaseDatabase.getInstance().getReference("trainings");
@@ -99,6 +102,17 @@ public class CoachTrainingView extends AppCompatActivity {
             } else {
                 Toast.makeText(CoachTrainingView.this, "Błąd podczas usuwania treningu.", Toast.LENGTH_SHORT).show();
             }
+        });
+    }
+
+    private void setupNavigation() {
+        ImageButton backButton = findViewById(R.id.backbtn);
+        backButton.setOnClickListener(v -> finish());
+
+        ImageButton profileButton = findViewById(R.id.profilebtn);
+        profileButton.setOnClickListener(v -> {
+            Intent intent = new Intent(CoachTrainingView.this, CoachProfile.class);
+            startActivity(intent);
         });
     }
 }
